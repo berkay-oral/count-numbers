@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COUNTER</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: rgb(65, 65, 65);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url(image/wallpaperGRAY.jpg)center/cover no-repeat;
+            color: rgb(45, 114, 243);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-transform: uppercase;
+        }
+
+        .counter-box{
+           flex: 0 0 70%; /*esnek gemişlik*/
+           text-align: center;
+           border: 2px solid rgb(45, 114, 243);
+           border-radius: 7px;
+           padding: 1.5rem 5rem;
+           transition: .2s ease-out;
+        }
+
+       .counter-box:hover{
+        box-shadow: 1px 1px 8px 1px rgb(45, 114, 243);
+       }
+
+       .counter{
+           font-size: 7rem;
+           color: white;
+       }
+
+       .btn{
+           outline: none;
+           font-size: 3rem;
+           background: none;
+           border: none  ;
+           color: rgb(45, 114, 243);
+           padding: 1.5rem;
+           cursor: pointer;
+           transition: .4s;
+       }
+
+       .btn:hover{
+           color: white;
+           transform: scale(1.5);
+       }
+
+          
+       .reset{
+           outline: none;
+           cursor: pointer;
+           background: none;
+           border: 2px solid rgb(45, 114, 243);
+           border-radius: 7px;
+           padding: 1rem 1rem;
+           color: white;
+           font-size: 1.5rem;
+           display: block;
+           margin: 8px auto;
+       }
+
+       .reset:focus{
+        box-shadow: 1px 1px 8px 1px rgb(45, 114, 243);
+       }
+
+    </style>
+
+        <div class="container">
+            <div class="counter-box">
+                <h1>counter</h1>
+                <h1 class="counter">0</h1>
+                <div id="btns">
+                    <button type="button" class="btn" id="lowerCountBtn">-</button>
+                    <button type="button" class="btn" id="addCountBtn">+</button>
+                    <button type="button" class="reset" id="resetBtn">RESET</button>
+                </div>
+            </div>
+        </div>
+    <script>
+        let counter = document.querySelector(".counter");//<h1 class="counter">0</h1> aldım
+        const addBtn = document.querySelector("#addCountBtn");// + butonunu aldım
+        const lowerBtn = document.querySelector("#lowerCountBtn");// - butonun aldım
+        const resetBtn = document.querySelector("#resetBtn");
+
+        let sayi = 0;//başlangıç değerimiz 0   //yapacaığımız diziarrayın her bir elemanı count adı olur
+ 
+        addBtn.addEventListener("click", increase);//addBtn e tıkladığımda increment(artır) fonksiyonum çaşılsın
+        lowerBtn.addEventListener("click", decrease);//lowerBtn e tıkladığımda  decrease(azalt) fonksiyonum çaşılsın
+        resetBtn.addEventListener("click", resetNumber);
+        
+        
+        
+        
+        //arttır fonksiyonu
+        function increase(){
+          
+          sayi++;//varsayılan sayıyı 1 artır
+                              //sayi nin başlangıç değeri 0 dır
+          counter.innerHTML =  sayi;//sayi++ eklediğimiz için her tıkladığımızda sayi değeri 1 artıcak
+         //sayi artırma işlemini counterın html içeriğinde göstericek
+  
+           if(sayi > 0){
+               counter.style.color="green";
+           }
+
+           else if(sayi === 0){
+               counter.style.color="white";
+           }
+
+
+           //alternatif buda olabilir
+        //    if(counter.innerHTML > "0"){
+        //        counter.style.color="green";
+        //    }
+
+        //    else if(counter.innerHTML === "0"){
+        //        counter.style.color="white";
+        //    }
+       
+
+      //                            transform:'translateX(150px)'  olabilir
+      //her yeni sayı açılırken    açılırken      açıldıktan sonra 
+               counter.animate([ {opacity:'0.2'}, {opacity:'1'}], {duration:1000, fill:'forwards'})//duration: 1000 1 saniye
+               //her tıkladığımızda şeffaftan neter 1 saniyede gelsin
+    
+    
+    }
+        
+
+
+        //azalt fonksaiyonu
+        function decrease(){
+            sayi--; // varsayılan sayıyı 1 azalt
+            counter.innerHTML = sayi;//sayi-- eklediğimiz için her tıkladığımızda sayi 1 azalıcak
+        
+         if(sayi < 0){
+               counter.style.color="red";
+           }
+
+           else if(sayi === 0){
+               counter.style.color="white";
+           }
+     
+           
+           counter.animate([ {opacity:'0.2'}, {opacity:'1'}], {duration:1000, fill:'forwards'})//duration: 1000 1 saniye
+
+        }
+ 
+
+
+        
+        //sıfırla fonksiyonu
+        function resetNumber(){
+            sayi = 0;
+            counter.innerHTML = sayi;
+            counter.style.color="white";
+
+            counter.animate([ {transform:'translateY(150px)'}, {transform: 'translateY(0px)'}], {duration:500, fill:'forwards'})//duration: 1000 1 saniye
+            counter.animate([ {opacity:'0.2'}, {opacity:'1'}], {duration:500, fill:'forwards'})//duration: 1000 1 saniye
+
+
+        }
+     
+
+
+
+</script>
+</body>
+</html>
